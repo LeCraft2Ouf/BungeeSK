@@ -138,7 +138,7 @@ public class SocketServer {
                     message += " §f(§3" + server.getName() + "§f)";
                 }
                 if (BungeeConfig.MESSAGES.get()) {
-                    BungeeSK.getLogger().info(message);
+                    VelocityUtils.sendColoredConsole(message);
                 }
             } catch (IOException ex) {
                 Debug.throwEx(ex);

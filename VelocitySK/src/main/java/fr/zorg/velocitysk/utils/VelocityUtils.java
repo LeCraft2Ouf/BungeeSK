@@ -10,8 +10,6 @@ import fr.zorg.velocitysk.packets.PacketServer;
 import fr.zorg.velocitysk.packets.SocketServer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.serializer.ComponentSerializer;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 
 import java.net.InetAddress;
@@ -48,6 +46,19 @@ public class VelocityUtils {
                 builder.appendNewline();
         }
         return builder.build();
+    }
+
+    /**
+     * Affiche du texte avec codes couleur § (et & → §) sur la console Velocity (Adventure / ANSI).
+     * À utiliser à la place de {@code Logger.info(String)} pour les messages colorés.
+     */
+    public static void sendColoredConsole(String legacyText) {
+        if (legacyText == null) {
+            return;
+        }
+        String normalized = legacyText.replace('&', '\u00a7');
+        BungeeSK.getServer().getConsoleCommandSource().sendMessage(
+                LegacyComponentSerializer.legacySection().deserialize(normalized));
     }
 
     public static BungeeServer getServerFromName(String name) {

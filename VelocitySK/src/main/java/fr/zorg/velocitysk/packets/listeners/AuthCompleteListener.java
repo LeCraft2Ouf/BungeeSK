@@ -4,7 +4,6 @@ import fr.zorg.bungeesk.common.entities.BungeeServer;
 import fr.zorg.bungeesk.common.packets.AuthCompletePacket;
 import fr.zorg.bungeesk.common.packets.BungeeSKPacket;
 import fr.zorg.bungeesk.common.packets.BungeeServerStartPacket;
-import fr.zorg.velocitysk.BungeeSK;
 import fr.zorg.velocitysk.api.BungeeSKListener;
 import fr.zorg.velocitysk.commands.BungeeSKCommand;
 import fr.zorg.velocitysk.packets.PacketServer;
@@ -27,14 +26,12 @@ public class AuthCompleteListener extends BungeeSKListener {
 
             if (BungeeConfig.MESSAGES.get()) {
                 if (server != null)
-                    BungeeSK.getLogger()
-                            .info(BungeeSKCommand.PREFIX +
-                                    "§7New server connected: §a" + server.getAddress().getHostAddress() + ":" + server.getPort() +
-                                    " §f(§3" + server.getName() + "§f)");
+                    VelocityUtils.sendColoredConsole(BungeeSKCommand.PREFIX +
+                            "§7New server connected: §a" + server.getAddress().getHostAddress() + ":" + server.getPort() +
+                            " §f(§3" + server.getName() + "§f)");
                 else
-                    BungeeSK.getLogger()
-                            .info(BungeeSKCommand.PREFIX +
-                                    "§7New server connected: §a" + socketServer.getSocket().getInetAddress().getHostAddress() + ":" + socketServer.getMinecraftPort());
+                    VelocityUtils.sendColoredConsole(BungeeSKCommand.PREFIX +
+                            "§7New server connected: §a" + socketServer.getSocket().getInetAddress().getHostAddress() + ":" + socketServer.getMinecraftPort());
             }
 
             if (server != null)
